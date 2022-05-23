@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wise Words</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container" id="container">
+            <!-- Tabs -->
+            <div class="tabs">
+                <input type="radio" class="tabs__radio" name="tabs-example" id="tabAll" checked>
+                <label for="tabAll" class="tabs__label">All</label>
+                <input type="radio" class="tabs__radio" name="tabs-example" id="tabGreek">
+                <label for="tabGreek" class="tabs__label">Ancient Greek</label>
+                <input type="radio" class="tabs__radio" name="tabs-example" id="tabLatin">
+                <label for="tabLatin" class="tabs__label">Latin</label>
+                <input type="radio" class="tabs__radio" name="tabs-example" id="tabOldEng">
+                <label for="tabOldEng" class="tabs__label">Old English</label>
+            </div>
+            <!-- Quote -->
+            <div class="quote-container">
+                <div class="quote-text">
+                    <span id="quote">
+                    </span>
+                </div>
+                <!-- Author -->
+                <div id="author"></div>
+            </div>
+            <!-- Buttons -->
+            <div class="button-container">
+                <button class="translate-button" id="translate-button">Translate</button>
+                <button class="new-quote" id="new-quote">New Quote</button>
+            </div>
+        </div>
+        <!-- Loader -->
+        <div class="loader" id="loader"></div>
+        <!-- Script -->
+        <script src="script.js"></script>
+    </body>
+</html>
