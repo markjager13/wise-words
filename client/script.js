@@ -1,11 +1,15 @@
 const container = document.getElementById('container');
 const quoteContainer = document.getElementById('quote-container');
-const quoteText = document.getElementById('quote');
-const authorText = document.getElementById('author');
+const quoteText = document.getElementById('quote-text');
+const quoteOriginal = document.getElementById('quote-original');
+const quoteEnglish = document.getElementById('quote-english');
+const author = document.getElementById('author');
 const newQuoteBtn = document.getElementById('new-quote');
+const translateBtn = document.getElementById('translate-button');
 const allTab = document.getElementById('tabAll');
 const greekTab = document.getElementById('tabGreek');
 const latinTab = document.getElementById('tabLatin');
+const oldEngTab = document.getElementById('tabOldEng');
 const loader = document.getElementById('loader');
 
 // Variable to store new quote
@@ -29,8 +33,15 @@ function showNewQuote() {
     // to use when fetching all guotes locally
     //const randomAllQuote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
     // Set quote, hide loader
-    quoteText.textContent = newQuote[0].quoteOriginal;
-    authorText.textContent = newQuote[0].author;
+    // check quote length
+    if (newQuote[0].quoteOriginal.length > 120 || newQuote[0].quoteEnglish.length > 120) {
+        quoteText.classList.add('long-quote');
+    } else {
+        quoteText.classList.remove('long-quote');
+    }
+    quoteOriginal.textContent = newQuote[0].quoteOriginal;
+    quoteEnglish.textContent = newQuote[0].quoteEnglish;
+    author.textContent = newQuote[0].author;
     complete();
 }
 
@@ -44,6 +55,9 @@ function getNewQuote() {
     }
     if (latinTab.checked) {
         getLatinQuote();
+    }
+    if (oldEngTab.checked) {
+        getOldEngQuote();
     }
 }
 
@@ -86,8 +100,35 @@ async function getLatinQuote() {
     }
 }
 
+// Gets random old english quote from API
+async function getOldEngQuote() {
+    loading();
+    const apiUrl = 'http://localhost:3000/quotes/randomoldeng/';
+    try {
+        const response = await fetch(apiUrl);
+        apiQuote = await response.json();
+        showNewQuote();
+    } catch (error) {
+        // catch error here
+    }
+}
+
+function translateQuote() {
+    if(quoteOriginal.style.display == 'block') {                
+        quoteEnglish.style.display = 'block';             
+        quoteOriginal.style.display = 'none';
+        console.log('huh');
+     }
+     else {
+        quoteEnglish.style.display = 'none';
+        quoteOriginal.style.display = 'block';            
+        console.log('wtf');
+     }  
+}
+
 // Event listeners
 newQuoteBtn.addEventListener('click', getNewQuote);
+translateBtn.addEventListener('click', translateQuote);
 
 // On Load
 getRandomQuote();

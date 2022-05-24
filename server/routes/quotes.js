@@ -48,6 +48,19 @@ router.get('/randomlatin', async (request, response) => {
     }
 })
 
+// Get random old english quote
+router.get('/randomoldeng', async (request, response) => {
+  const randomSpecificLanguage = await quoteModel.aggregate([
+    { $match: { languageCategory: "old english" } }, 
+    { $sample: { size: 1 } }
+    ])
+    try {
+      response.send(randomSpecificLanguage);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+})
+
 
 
 module.exports = router;
