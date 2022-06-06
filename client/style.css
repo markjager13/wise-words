@@ -7,7 +7,7 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-    background-color: #ffffff;
+    background-color: #DFDBE5;
     color: #000;
     font-family: "Raleway", sans-serif;
     font-weight: 700;
@@ -18,10 +18,10 @@ body {
 }
 
 .container {
+    background-color: #ffffff;
     width: 800px;
     padding: 20px 30px;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -29,7 +29,6 @@ body {
 .tabs {
     display: flex;
     justify-content: space-around;
-    background-color: #ffffff;
     border-bottom: 2px solid #d3d3d3;
 }
 
@@ -60,38 +59,34 @@ body {
     font-size: 2.75rem;
 }
 
-
-
 #quote-original.fade-in {
     opacity: 1;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 #quote-original.fade-out {
     opacity: 0;
-    transition: 1s;
+    transition: 0.5s;
 }
-
-
 
 #quote-english.fade-in {
     opacity: 1;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 #quote-english.fade-out {
     opacity: 0;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .quote {
     opacity: 1;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .quote.hidden {
     opacity: 0;
-    transition: 1s; 
+    transition: 0.5s; 
 }
 
 .long-quote {
@@ -104,9 +99,6 @@ body {
     font-weight: 400;
     font-style: italic;
 }
-
-/* Translation effect */
-
 
 /* Button Container */
 .button-container {

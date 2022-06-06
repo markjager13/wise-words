@@ -134,7 +134,7 @@ function translateQuote() {
             setTimeout(function() {
                 quoteEnglish.classList.remove("fade-in");             
             }, 100)
-        }, 1000);
+        }, 500);
     }
     else {
         quoteEnglish.classList.add("fade-out")
@@ -150,7 +150,7 @@ function translateQuote() {
             setTimeout(function() {
                 quoteOriginal.classList.remove("fade-in");      
             }, 100)         
-        }, 1000);      
+        }, 500);      
     } 
 
 }
