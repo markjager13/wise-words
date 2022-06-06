@@ -45,6 +45,13 @@ function showNewQuote() {
 
 // Gets a new quote on button click, checks which tab is selected
 function getNewQuote() {
+    // New quotes should first be displayed in Original language, reset if otherwise
+    if (quoteEnglish.style.display == 'block') {
+        quoteEnglish.classList.add("hidden");
+        quoteEnglish.style.display = 'none';
+        quoteOriginal.style.display = 'block';
+        quoteOriginal.classList.remove("hidden");       
+    }
     if (allTab.checked) {
         getRandomQuote();
     }
@@ -111,8 +118,8 @@ async function getOldEngQuote() {
     }
 }
 
+// Translate effect to switch between Original / English text
 function translateQuote() {
-
     if(quoteOriginal.style.display == 'block') {     
         quoteOriginal.classList.add("fade-out")
         setTimeout(function () {
@@ -145,7 +152,7 @@ function translateQuote() {
             }, 100)         
         }, 1000);      
     } 
-    
+
 }
 
 // Event listeners
