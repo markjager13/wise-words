@@ -5,6 +5,7 @@ const quotesRoutes = require('./routes/quotes');
 require('dotenv/config');
 
 const app = express();
+const PORT = process.env.PORT || 3000
 
 // CORS error work around for testing in local env
 app.use(function(req, res, next) {
@@ -15,15 +16,16 @@ app.use(function(req, res, next) {
     next();
 })
 
-
+// Data parsing
 app.use(bodyParser.json());
 
+// Routes
 app.use('/quotes', quotesRoutes);
 
+// Database connection
 mongoose.connect(
     process.env.DB_CONNECTION,
     {dbName: "quoteDB"}
-    //() => console.log('Connected to DB')
 );
 
 const db = mongoose.connection;
@@ -32,12 +34,11 @@ db.once("open", function () {
     console.log("Connected successfully");
 });
 
+if (process.env.NODE_ENG === 'production') {
+    
+}
 
-app.get('/', (request, response) => {
-    response.send('we are at home');
-})
-
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log("Server is running...");
 });
   

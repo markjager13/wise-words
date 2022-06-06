@@ -30,15 +30,13 @@ function complete() {
 // Renders new quote to page
 function showNewQuote() {
     const newQuote = apiQuote;
-    // to use when fetching all guotes locally
-    //const randomAllQuote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
-    // Set quote, hide loader
     // check quote length
     if (newQuote[0].quoteOriginal.length > 120 || newQuote[0].quoteEnglish.length > 120) {
         quoteText.classList.add('long-quote');
     } else {
         quoteText.classList.remove('long-quote');
     }
+    // Set quote, hide loader
     quoteOriginal.textContent = newQuote[0].quoteOriginal;
     quoteEnglish.textContent = newQuote[0].quoteEnglish;
     author.textContent = newQuote[0].author;
@@ -114,21 +112,51 @@ async function getOldEngQuote() {
 }
 
 function translateQuote() {
-    if(quoteOriginal.style.display == 'block') {                
-        quoteEnglish.style.display = 'block';             
-        quoteOriginal.style.display = 'none';
-        console.log('huh');
-     }
-     else {
-        quoteEnglish.style.display = 'none';
-        quoteOriginal.style.display = 'block';            
-        console.log('wtf');
-     }  
+
+    if(quoteOriginal.style.display == 'block') {     
+        quoteOriginal.classList.add("fade-out")
+        setTimeout(function () {
+            quoteOriginal.classList.remove("fade-out");
+            quoteOriginal.classList.add("hidden");
+            quoteOriginal.style.display = 'none';
+            quoteEnglish.style.display = 'block';
+            setTimeout(function() {
+                quoteEnglish.classList.remove("hidden");
+                quoteEnglish.classList.add("fade-in");
+            }, 100)
+            setTimeout(function() {
+                quoteEnglish.classList.remove("fade-in");             
+            }, 100)
+        }, 1000);
+    }
+    else {
+        quoteEnglish.classList.add("fade-out")
+        setTimeout(function () {
+            quoteEnglish.classList.remove("fade-out");
+            quoteEnglish.classList.add("hidden");
+            quoteEnglish.style.display = 'none';
+            quoteOriginal.style.display = 'block';
+            setTimeout(function() {
+                quoteOriginal.classList.remove("hidden");
+                quoteOriginal.classList.add("fade-in");
+            }, 100)     
+            setTimeout(function() {
+                quoteOriginal.classList.remove("fade-in");      
+            }, 100)         
+        }, 1000);      
+    } 
+    
 }
 
 // Event listeners
 newQuoteBtn.addEventListener('click', getNewQuote);
 translateBtn.addEventListener('click', translateQuote);
+// Tab selection should generate new quote
+allTab.addEventListener('click', getNewQuote);
+greekTab.addEventListener('click', getNewQuote);
+latinTab.addEventListener('click', getNewQuote);
+oldEngTab.addEventListener('click', getNewQuote);
+
 
 // On Load
 getRandomQuote();
